@@ -1,0 +1,22 @@
+<html>
+    
+<body>
+
+<h2>Welcome {{user}}</h2>
+
+<a href="/cart">Cart</a> |
+<a href="/logout">Logout</a>
+
+<ul>
+{% for m in meds %}
+<li>
+{{m[1]}} - ₹{{m[2]}}
+<a href="/add/{{m[1]}}/{{m[2]}}">
+<button>Add</button>
+</a>
+</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>

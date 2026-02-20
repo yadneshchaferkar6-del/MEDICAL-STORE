@@ -1,0 +1,17 @@
+body{
+    font-family: Arial;
+    background:#f0f8ff;
+    padding:20px;
+}
+
+h2{
+    color:green;
+}
+
+button{
+    background:green;
+    color:white;
+    border:none;
+    padding:5px 10px;
+    cursor:pointer;
+}
