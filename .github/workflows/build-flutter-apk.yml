@@ -1,0 +1,42 @@
+name: Build Flutter APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'flutter_medical_store/**'
+      - '.github/workflows/build-flutter-apk.yml'
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: flutter_medical_store
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: medical-store-release-apk
+          path: flutter_medical_store/build/app/outputs/flutter-apk/app-release.apk
